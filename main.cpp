@@ -1,3 +1,5 @@
+///Tema 2
+
 #include <iostream>
 #include <fstream>
 #include <string.h>
@@ -182,6 +184,7 @@ int main()
 
     coin x3("Bitcoin","BTC",13),x4("Bitcoin","BTC",200),x5("Bitcoin","BTC",24000);
     std::cout<<"Adunari si scaderi:\n"<<x3+x4<<x5+89+x4<<"\n";
+
 
 
     ///Clasa pereche
