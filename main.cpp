@@ -44,30 +44,17 @@ private:
     int cant = 0;
 public:
     coin () {}
-    coin ( const std::string& name_, const std::string& ticker_, int cant_ )
+    coin ( const std::string& name_, const std::string& ticker_, int cant_ ):name (name_), ticker (ticker_), cant(cant_){}
+    coin ( const std::string& name_, const std::string& ticker_) :name (name_), ticker (ticker_)
     {
-        name = name_;
-        ticker = ticker_;
-        cant = cant_;
-    }
-    coin ( const std::string& name_, const std::string& ticker_)
-    {
-        name = name_;
-        ticker = ticker_;
         cant = 0;
     }
-    coin ( const std::string& ticker_)
+    coin ( const std::string& ticker_):ticker (ticker_)
     {
         name = "";
-        ticker = ticker_;
         cant = 0;
     }
-    coin ( const coin& x)
-    {
-        name = x.name;
-        ticker = x.ticker;
-        cant = x.cant;
-    }
+    coin ( const coin& x):name(x.name), ticker (x.ticker), cant(x.cant){}
     friend std::ostream& operator << (std::ostream& os, const coin& x)
     {
         os << "Name: "<<x.name<<", ticker: "<<x.ticker<<", cantitate: "<<x.cant<<"\n";
@@ -118,16 +105,8 @@ private:
     coin buy_coin = {"","",0};///coin to buy
 public:
     pereche(){}
-    pereche (coin& sell_coin_, coin& buy_coin_)
-    {
-        sell_coin = sell_coin_;
-        buy_coin = buy_coin_;
-    }
-    pereche ( pereche& x)
-    {
-        sell_coin = x.sell_coin;
-        buy_coin = x.buy_coin;
-    }
+    pereche (coin& sell_coin_, coin& buy_coin_) :sell_coin(sell_coin_), buy_coin(buy_coin_){}
+    pereche ( pereche& x):sell_coin (x.sell_coin),buy_coin (x.buy_coin){}
     ~pereche(){}
     pereche operator = (const pereche x)
     {
