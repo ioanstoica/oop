@@ -6,12 +6,9 @@
 class candela
 {
 private:
-    int OpenPrice;
+    int OpenPrice = 0;
 public:
-    candela()
-    {
-        OpenPrice = 0;
-    }
+    candela(){}
     int getOpenPrice()const
     {
         return OpenPrice;
@@ -33,10 +30,10 @@ public:
         os << "Price: " << st.OpenPrice << "\n";
         return os;
     }
-    friend std::istream& operator >> ( std::istream& os, candela& x)
+    friend std::istream& operator >> ( std::istream& is, candela& x)
     {
-        os >> x.OpenPrice ;
-        return os;
+        is >> x.OpenPrice ;
+        return is;
     }
 };
 class coin
@@ -44,14 +41,9 @@ class coin
 private:
     std::string name;
     std::string ticker;
-    int cant;
+    int cant = 0;
 public:
-    coin()
-    {
-        name = "";
-        ticker = "";
-        cant = 0;
-    }
+    coin () {}
     coin ( const std::string& name_, const std::string& ticker_, int cant_ )
     {
         name = name_;
@@ -94,25 +86,25 @@ public:
         return *this;
     }
     ~coin(){} // destructor
-    coin operator + ( const coin& x)
+    coin operator + ( coin& x)
     {
         coin a(*this);
         a.cant += x.cant;
         return a;
     }
-    coin operator - ( const coin& x)
+    coin operator - ( coin& x)
     {
         coin a(*this);
         a.cant -= x.cant;
         return a;
     }
-    coin operator + ( const int& x)
+    coin operator + (int x)
     {
         coin a(*this);
         a.cant += x;
         return a;
     }
-    coin operator - (const int& x)
+    coin operator - (int& x)
     {
         coin a(*this);
         a.cant -= x;
@@ -122,34 +114,30 @@ public:
 class pereche
 {
 private:
-    coin coin1;///coin to sell
-    coin coin2;///coin to buy
+    coin sell_coin = {"","",0};///coin to sell
+    coin buy_coin = {"","",0};///coin to buy
 public:
-    pereche()
+    pereche(){}
+    pereche (coin& sell_coin_, coin& buy_coin_)
     {
-        coin1 = {"","",0};
-        coin2 = {"","",0};
-    }
-    pereche (coin& coin1_, coin& coin2_)
-    {
-        coin1 = coin1_;
-        coin2 = coin2_;
+        sell_coin = sell_coin_;
+        buy_coin = buy_coin_;
     }
     pereche ( pereche& x)
     {
-        coin1 = x.coin1;
-        coin2 = x.coin2;
+        sell_coin = x.sell_coin;
+        buy_coin = x.buy_coin;
     }
     ~pereche(){}
     pereche operator = (const pereche x)
     {
-        coin1 = x.coin1;
-        coin2 = x.coin2;
+        sell_coin = x.sell_coin;
+        buy_coin = x.buy_coin;
         return *this;
     }
     friend std::ostream& operator << (std::ostream& os, const pereche& x)
     {
-        os<<"Perechea: \n"<<x.coin1<<x.coin2;
+        os<<"Perechea: \n"<<x.sell_coin<<x.buy_coin;
         return os;
     }
 };
@@ -168,7 +156,8 @@ int main()
     f.close();
 
     std::cout<<"Exemple de candele: \n";
-    candela c1, c2(40000), c3(63200);
+    candela c1;
+    candela c2(40000), c3(63200);
     std::cout<< c1<< c2<< c3;
     std::cout<<"\n";
 
