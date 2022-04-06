@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <fstream>
-#include <string.h>
+#include <string>
 class candela
 {
 private:
@@ -168,7 +168,7 @@ int main()
     f.close();
 
     std::cout<<"Exemple de candele: \n";
-    candela c1, c2({40000}), c3(63200);
+    candela c1, c2(40000), c3(63200);
     std::cout<< c1<< c2<< c3;
     std::cout<<"\n";
 
