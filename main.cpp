@@ -3,9 +3,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <math.h>
 class candela
 {
 private:
+    int Data = 0;
     int OpenPrice = 0;
 public:
     candela(){}
@@ -13,28 +15,32 @@ public:
     {
         return OpenPrice;
     }
+    int getData()const{return Data;}
     void setOpenPrice(int OpenPrice_)
     {
         OpenPrice = OpenPrice_;
     }
-    candela(const candela& other) : OpenPrice{other.OpenPrice} {}
-    candela(int OpenPrice_) : OpenPrice{OpenPrice_}{}
+    void setData(int Data_){Data = Data_;};
+    candela(const candela& other) : Data(other.Data), OpenPrice(other.OpenPrice){}
+    candela(int Data_, int OpenPrice_) : Data{Data_}, OpenPrice{OpenPrice_}{}
     candela& operator=(const candela& other)
     {
         OpenPrice = other.OpenPrice;    //operator =
+        Data = other.Data;
         return *this;
     }
     ~candela() {/*std::cout << "Destr candela\n";*/}// destructor
     friend std::ostream& operator<<(std::ostream& os, const candela& st)
     {
-        os << "Price: " << st.OpenPrice << "\n";
+        os << "Data: " << st.Data <<" pret: " << st.OpenPrice << "\n";
         return os;
     }
     friend std::istream& operator >> ( std::istream& is, candela& x)
     {
-        is >> x.OpenPrice ;
+        is >> x.Data >> x.OpenPrice ;
         return is;
     }
+
 };
 class coin
 {
@@ -57,7 +63,7 @@ public:
     coin ( const coin& x):name(x.name), ticker (x.ticker), cant(x.cant){}
     friend std::ostream& operator << (std::ostream& os, const coin& x)
     {
-        os << "Name: "<<x.name<<", ticker: "<<x.ticker<<", cantitate: "<<x.cant<<"\n";
+        os << "Name: "<<x.name<<", ticker: "<<x.ticker<<", cantitate: "<<x.cant <<"\n";
         return os;
     }
     friend std::istream& operator >> ( std::istream& os, coin& x)
@@ -97,6 +103,45 @@ public:
         a.cant -= x;
         return a;
     }
+    void evolutie ( int DataInitiala, int DataFinala)
+    {
+        if ( DataInitiala > DataFinala)
+        {
+            std::cout<<"Eroare: DataInitiala > DataFinala "<<std::endl;
+            return;
+        }
+        std::string fisier = (*this).ticker + ".txt";
+        std::cout<< "Datele se afla in fisierul: "<< fisier<< std::endl;
+        std::fstream f;
+        f.open(fisier,std::fstream::in);
+
+        candela c;
+        int PretInitial = -1, PretFinal = -1;
+        while(f>>c)
+        {
+            int Data = c.getData();
+            if (Data == DataInitiala )
+                PretInitial = c.getOpenPrice();
+            if (Data == DataFinala)
+                PretFinal = c.getOpenPrice();
+        }
+        std::cout<<"PretulInitial: " << PretInitial<<" PretFinal: " <<PretFinal<< std::endl;
+        float modificarePret = float(float(PretFinal - PretInitial) / float(PretInitial));
+        if (modificarePret >= 0)
+            std::cout << "Pretul a crescut cu: " << modificarePret *100 <<"%\n";
+        else
+            std::cout << "Pretul a scazut cu: " << modificarePret *100 <<"%\n";
+
+        int NrAni = DataFinala - DataInitiala ;
+        if (NrAni > 1 ) /// PretInitial * (1+ModificareaAnuala)^NrAni = PretFinal => (1+ModificareaAnuala)^NrAni = PretFinal/PretInitial => 1+ModificareaAnuala = (PretFinal/PretInitial)^(1/NrAni) => ModificareaAnuala = (PretFinal/PretInitial)^(1/NrAni) -1
+        {
+            float ModificareaAnuala = pow(float(PretFinal)/float(PretInitial),1/float(NrAni)) -1 ;
+            std::cout<<"In cei " << NrAni <<" ani "<< "modificarea medie anuala a pretului a fost de: " << ModificareaAnuala * 100 <<"%\n" ;
+        }
+
+        f.close();
+        return;
+    }
 };
 class pereche
 {
@@ -124,6 +169,8 @@ public:
 
 int main()
 {
+    /// Tema 1
+
     /// Clasa candela
     std::fstream f;
     f.open("date.txt",std::fstream::in);
@@ -136,7 +183,7 @@ int main()
 
     std::cout<<"Exemple de candele: \n";
     candela c1;
-    candela c2(40000), c3(63200);
+    candela c2(1, 40000), c3(2, 63200);
     std::cout<< c1<< c2<< c3;
     std::cout<<"\n";
 
@@ -153,12 +200,29 @@ int main()
     coin x3("Bitcoin","BTC",13),x4("Bitcoin","BTC",200),x5("Bitcoin","BTC",24000);
     std::cout<<"Adunari si scaderi:\n"<<x3+x4<<x5+89+x4<<"\n";
 
-
-
     ///Clasa pereche
     coin x1("Egold","EGLD",1), x2("FutureCoin", "FUTURE", 150000);
     pereche p1, p2(x1,x2);
-    std::cout<<"Perechi:\n"<<p1<<p2;
+    std::cout<<"Perechi:\n"<<p1<<p2<<std::endl;
+    std::cout<<std::endl;
 
+    /// Tema 2
+    /// Datale istorice ale ficarei monede se afla intr-un fisier de forma tixker.txt , ex: BTC.txt
+
+
+
+    /// Cresterea pretului de la data DataInitiala la data DataFinala a fost:
+    coin btc("Bitcoin","BTC",100);
+    int DataInitiala = 1, DataFinala = 3;
+    std::cout << "Analizam: " << btc << "De la data " << DataInitiala << " la data " <<DataFinala << "\n";
+    btc.evolutie ( DataInitiala, DataFinala);
+
+
+
+
+    char y;
+    std::cout<<"\n";
+    std::cout<<"Apasa orice tasta pentru a incheia programul!\n";
+    std::cin>> y;
     return 0;
 }
