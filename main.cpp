@@ -30,6 +30,11 @@ public:
         zi = atoi(s_aux+8);
     }
     ~timp () {}
+    int getAn ()
+    {
+        return an;
+    }
+
 
     friend std::ostream& operator << (std::ostream& os, const timp& t)
     {
@@ -62,13 +67,6 @@ public:
     {
         return t < (*this);
     }
-    /*timp operator = (const timp t)
-    {
-        an = t.an;
-        luna = t.luna;
-        zi = t.zi;
-        return *this;
-    }*/
     timp operator = (const timp &t)
     {
         (*this).an = t.an;
@@ -94,7 +92,7 @@ class candela
 {
 private:
     timp Data{"0000-00-00"}; ///format "yyyy-mm-dd"
-    float Open = 0, High = 0 ,Low = 0, Close = 0, Volume = 0;
+    float Open = 0, High = 0,Low = 0, Close = 0, Volume = 0;
 public:
     candela() {}
     int getOpen()const
@@ -114,7 +112,7 @@ public:
         Data = Data_;
     };
     candela(const candela& other) : Data(other.Data), Open(other.Open), High(other.High), Low(other.Low), Volume(other.Volume)  {}
-    candela(timp Data_, float Open_, float High_, float Low_, float Close_, float Volume_) : Data{Data_}, Open{Open_}, High(High_), Low(Low_), Volume(Volume_){}
+    candela(timp Data_, float Open_, float High_, float Low_, float Close_, float Volume_) : Data{Data_}, Open{Open_}, High(High_), Low(Low_), Volume(Volume_) {}
     candela(timp Data_, float Open_) : Data{Data_}, Open{Open_} {}
     candela& operator=(const candela& other)
     {
@@ -140,24 +138,7 @@ public:
 
 
 };
-std::vector<std::vector<std::string> > parseCSV(std::string src)
-{
-    std::ifstream data(src);
-    std::string line;
-    std::vector<std::vector<std::string> > parsedCsv;
-    while(std::getline(data,line))
-    {
-        std::stringstream lineStream(line);
-        std::string cell;
-        std::vector<std::string> parsedRow;
-        while(std::getline(lineStream,cell,','))
-            parsedRow.push_back(cell);
-        parsedCsv.push_back(parsedRow);
-    }
-    return parsedCsv;
-
-};
-
+std::vector<std::vector<std::string> > parseCSV(std::string src);
 class coin
 {
 private:
@@ -177,9 +158,13 @@ public:
         cant = 0;
     }
     coin ( const coin& x):name(x.name), ticker (x.ticker), cant(x.cant) {}
+    std::string getName()
+    {
+        return name;
+    }
     friend std::ostream& operator << (std::ostream& os, const coin& x)
     {
-        os << "Name: "<<x.name<<", ticker: "<<x.ticker<<", cantitate: "<<x.cant <<"\n";
+        os << "Name: "<<x.name<<", ticker: "<<x.ticker<<", cantitate: "<<x.cant ;
         return os;
     }
     friend std::istream& operator >> ( std::istream& is, coin& x)
@@ -226,54 +211,59 @@ public:
             std::cout<<"Eroare: DataInitiala > DataFinala "<<std::endl;
             return;
         }
+        ///Partea de convertire fisiere
         std::string fisier_api = (*this).ticker + "-USD.csv";
         std::string fisier_convertit = (*this).ticker + "-USD.txt";
-        std::cout<< "Datele din fisierul: "<< fisier_api<< " le convertim in fisierul: "<<fisier_convertit << std::endl;
-        std::ofstream f(fisier_convertit);
+        std::ofstream g(fisier_convertit);
         std::vector<std::vector<std::string> > parsedCSV;
         parsedCSV = parseCSV(fisier_api); /// (dest, src)
-        auto i = parsedCSV.begin() ; ++i;
+        auto i = parsedCSV.begin() ;
+        ++i;
         for( ; i != parsedCSV.end(); ++i)
         {
             int k = 0;
             for  (auto j = (*i).begin(); j!= (*i).end(); ++k,++j)
                 if ( k!=5 )
-                    f << (*j) << " " ;
-            f<<std::endl;
+                    g << (*j) << " " ;
+            g<<std::endl;
         }
+        g.close();
+
+        std::fstream f;
+        f.open(fisier_convertit,std::fstream::in);
 
 
-
-        //std::fstream f;
-        //f.open(fisier,std::fstream::in);
-
-
-        /*candela c;
-        int PretInitial = -1, PretFinal = -1;
+        candela c;
+        float PretInitial = -1, PretFinal = -1;
         while(f>>c)
         {
-            int Data = c.getData();
+            timp Data = c.getData();
             if (Data == DataInitiala )
-                PretInitial = c.getOpenPrice();
+                PretInitial = c.getOpen();
             if (Data == DataFinala)
-                PretFinal = c.getOpenPrice();
+                PretFinal = c.getOpen();
         }
-        std::cout<<"PretulInitial: " << PretInitial<<" PretFinal: " <<PretFinal<< std::endl;
-        float modificarePret = float(float(PretFinal - PretInitial) / float(PretInitial));
+        if (PretInitial == -1 || PretFinal == -1)
+        {
+            std::cout<<"Nu am gasit DataInitiala sau DataFinala"<<std::endl;
+            return ;
+        }
+        std::cout<<"Pretul la data de " << DataInitiala << " era " << PretInitial<<"$ iar la data de " <<DataFinala << " era " << PretFinal<< "$."<< std::endl;
+        float modificarePret = (PretFinal - PretInitial) / PretInitial;
         if (modificarePret >= 0)
-            std::cout << "Pretul a crescut cu: " << modificarePret *100 <<"%\n";
+            std::cout << "Pretul a crescut cu " << modificarePret *100 <<"%\n";
         else
-            std::cout << "Pretul a scazut cu: " << modificarePret *100 <<"%\n";
+            std::cout << "Pretul a scazut cu " << modificarePret *100 <<"%\n";
 
-        int NrAni = DataFinala - DataInitiala ;
+        float NrAni = DataFinala.getAn() - DataInitiala.getAn() ;
         if (NrAni > 1 ) /// PretInitial * (1+ModificareaAnuala)^NrAni = PretFinal => (1+ModificareaAnuala)^NrAni = PretFinal/PretInitial => 1+ModificareaAnuala = (PretFinal/PretInitial)^(1/NrAni) => ModificareaAnuala = (PretFinal/PretInitial)^(1/NrAni) -1
         {
-            float ModificareaAnuala = pow(float(PretFinal)/float(PretInitial),1/float(NrAni)) -1 ;
-            std::cout<<"In cei " << NrAni <<" ani "<< "modificarea medie anuala a pretului a fost de: " << ModificareaAnuala * 100 <<"%\n" ;
+            float ModificareaAnuala = pow(PretFinal/PretInitial,1/NrAni) -1 ;
+            std::cout<<"In cei " << NrAni <<" ani "<< "modificarea medie anuala a pretului a fost de " << ModificareaAnuala * 100 <<"%\n" ;
         }
-        */
 
-        //f.close();
+
+        f.close();
         return;
     }
 };
@@ -299,6 +289,83 @@ public:
         return os;
     }
 };
+int main_close();
+
+
+void tema1();
+int main()
+{
+    ///     == Functionalitati ==
+
+    ///        == A. Tema 1 ==
+    /// Pentru verificarea/rularea cerintelor de la tema 1 decomentati urmatoarea linie
+    tema1();
+
+
+
+    ///     == Functionalitatea principala ==
+    ///
+    ///1. Schimbati DataInitiala si DataFinala cu cate o valoare in intervalul [2014-09-17, 2022-04-25]
+    timp DataInitiala( "2015-02-01" );
+    timp DataFinala  ( "2019-03-01" );
+    ///2. Rulati programul. Programul va afisa o analiza a pretului monedei in perioada respectiva
+    coin btc("Bitcoin","BTC",100);
+    std::cout<<"                       == Analiza istoric pret ==\n\n";
+    std::cout << "Analizam " << btc.getName() << " de la data " << DataInitiala << " la data " <<DataFinala << ":\n";
+    btc.evolutie ( DataInitiala, DataFinala);
+
+
+
+    ///     == Pentru ca programul sa asptepte apasarea unei taste decomentati urmatoarea linie
+    return main_close();
+    return 0;
+}
+
+
+
+void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
+{
+    std::cout<< "                           == Tema 1 ==\n\n";
+
+    /// Clasa candela
+
+    std::fstream f;
+    f.open("date.txt",std::fstream::in);
+    candela c;
+    std::cout<<"Fisierul cu candele:\n";
+    while(f>>c)
+        std::cout<<c;
+    std::cout<<"\n";
+    f.close();
+
+    std::cout<<"Exemple de candele: \n";
+    candela c1;
+    candela c2("2022-04-13", 40123.570313), c3("2015-12-20", 462.234009);
+    std::cout<< c1<< c2<< c3;
+    std::cout<<"\n";
+
+    /// Clasa coin
+    std::fstream g;
+    g.open("coins.txt",std::fstream::in);
+    coin x;
+    std::cout<<"Exemple de monede:\n";
+    while(g>>x)
+        std::cout<<x<<"\n";
+    std::cout<<"\n";
+    g.close();
+
+    coin x3("Bitcoin","BTC",13),x4("Bitcoin","BTC",200),x5("Bitcoin","BTC",24000);
+    std::cout<<"Adunari si scaderi:\n"<<x3+x4<<"\n"<<x5+89+x4<<"\n";
+    std::cout<<"\n";
+
+    /// Clasa pereche
+    coin x1("Egold","EGLD",1), x2("FutureCoin", "FUTURE", 150000);
+    pereche p1, p2(x1,x2);
+    std::cout<<"Exemple de perechi:\n"<<p1<<p2<<std::endl;
+    std::cout<<std::endl;
+
+}
+
 int main_close()
 {
     char y;
@@ -307,99 +374,21 @@ int main_close()
     std::cin>> y;
     return 0;
 }
-tm* convert_string_to_tm(const char data[]) /// convert string de forma "yyyy-mm-dd" in structura de forma tm
-{
-    tm *ltm = new tm;
-    char data_aux[11];
-    for(int i=0; i<=10; i++)
-        data_aux[i] = data[i];
-    data_aux[4] = 0;
-    ltm->tm_year = atoi(data_aux) - 1900;
-    data_aux[7] = 0;
-    ltm->tm_mon = atoi(data_aux+5) - 1;
-    ltm->tm_mday = atoi(data_aux+8);
-    return ltm;
-}
-void print(tm* ltm)
-{
-    // print various components of tm structure.
-    std::cout << "Year:" << 1900 + ltm->tm_year<<std::endl;
-    std::cout << "Month: "<< 1 + ltm->tm_mon<< std::endl;
-    std::cout << "Day: "<< ltm->tm_mday << std::endl;
-    //std::cout << "Time: "<< 5+ltm->tm_hour << ":";
-    //std::cout << 30+ltm->tm_min << ":";
-    //std::cout << ltm->tm_sec << std::endl;
-}
-int main()
-{
-    /// Tema 1
 
-    /// Clasa candela
-    bool print_all = 0;
-
-    if (print_all == 1 )
+std::vector<std::vector<std::string> > parseCSV(std::string src)
+{
+    std::ifstream data(src);
+    std::string line;
+    std::vector<std::vector<std::string> > parsedCsv;
+    while(std::getline(data,line))
     {
-        /*std::fstream f;
-        f.open("date.txt",std::fstream::in);
-        candela c;
-        std::cout<<"Fisierul cu preturi:\n";
-        while(f>>c)
-            std::cout<<c;
-        std::cout<<"\n";
-        f.close();
-
-        std::cout<<"Exemple de candele: \n";
-        candela c1;
-        candela c2(1, 40000), c3(2, 63200);
-        std::cout<< c1<< c2<< c3;
-        std::cout<<"\n";
-
-        ///Clasa coin
-        std::fstream g;
-        g.open("coins.txt",std::fstream::in);
-        coin x;
-        std::cout<<"Fisierul cu monede:\n";
-        while(g>>x)
-            std::cout<<x;
-        std::cout<<"\n";
-        g.close();
-
-        coin x3("Bitcoin","BTC",13),x4("Bitcoin","BTC",200),x5("Bitcoin","BTC",24000);
-        std::cout<<"Adunari si scaderi:\n"<<x3+x4<<x5+89+x4<<"\n";
-
-        ///Clasa pereche
-        coin x1("Egold","EGLD",1), x2("FutureCoin", "FUTURE", 150000);
-        pereche p1, p2(x1,x2);
-        std::cout<<"Perechi:\n"<<p1<<p2<<std::endl;
-        std::cout<<std::endl;
-
-        return main_close();*/
+        std::stringstream lineStream(line);
+        std::string cell;
+        std::vector<std::string> parsedRow;
+        while(std::getline(lineStream,cell,','))
+            parsedRow.push_back(cell);
+        parsedCsv.push_back(parsedRow);
     }
-    /// Tema 2
-    /// Datele istorice ale ficarei monede se afla intr-un fisier de forma tixker-USD.txt , ex: BTC-USD.txt
+    return parsedCsv;
 
-    /// Cresterea pretului de la data DataInitiala la data DataFinala a fost:
-    coin btc("Bitcoin","BTC",100);
-    timp DataInitiala( "2018-02-01") , DataFinala ( "2019-03-01" );
-    std::cout << "Analizam: " << btc << "De la data " << DataInitiala << " la data " <<DataFinala << "\n";
-
-    btc.evolutie ( DataInitiala, DataFinala);
-
-    ///Time tests:
-    //timp t = DataFinala;
-    //std::cout<<( DataFinala <= DataInitiala );
-
-    /*std::fstream f;
-    f.open("date.txt",std::fstream::in);
-    candela c;
-    std::cout<<"Fisierul cu preturi:\n";
-    while(f>>c)
-        std::cout<<c;
-    std::cout<<"\n";
-    f.close();
-*/
-
-
-
-    return 0;
-}
+};
