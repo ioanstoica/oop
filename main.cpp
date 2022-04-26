@@ -21,7 +21,7 @@ public:
     timp (const char s[])
     {
         char s_aux[11];
-        strcpy_s(s_aux,s);
+        strcpy(s_aux,s);
         s_aux[4]=s_aux[7]=0;
         an = atoi(s_aux);
         luna = atoi(s_aux+5);
@@ -39,9 +39,9 @@ public:
     {
         char aux_luna[2]="",aux_zi[3]="";
         if(t.luna<=9)
-            strcpy_s(aux_luna,"0");
+            strcpy(aux_luna,"0");
         if(t.zi<=9)
-            strcpy_s(aux_zi,"0");
+            strcpy(aux_zi,"0");
         os<<t.an<<"-"<<aux_luna<<t.luna<<"-"<<aux_zi<<t.zi;
         return os;
     }
