@@ -8,7 +8,7 @@
 #include <ctime>
 #include <vector>
 #include <sstream>
-
+#include <conio.h>
 
 class timp
 {
@@ -368,10 +368,9 @@ void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
 
 int main_close()
 {
-    char y;
     std::cout<<"\n";
-    std::cout<<"Trimite orice caracter pentru a incheia programul!\n";
-    std::cin>> y;
+    std::cout<<"Apasa orice tasta pentru a incheia programul!\n";
+    _getch();
     return 0;
 }
 
