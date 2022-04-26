@@ -340,7 +340,7 @@ void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
 
     std::cout<<"Exemple de candele: \n";
     candela c1;
-    candela c2("2022-04-13", 40123.570313), c3("2015-12-20", 462.234009);
+    candela c2("2022-04-13", 40123.570313,42000,40000,41000,1000000), c3("2015-12-20", 462.234009);
     std::cout<< c1<< c2<< c3;
     std::cout<<"\n";
 
