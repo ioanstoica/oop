@@ -1,1 +1,3 @@
-https://www.tutorialspoint.com/cplusplus/cpp_date_time.htm
+Finance api:
+https://finance.yahoo.com/quote/BTC-USD/history/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAIHGNWyASRkvFJ7KTsK04L_iKjJ62lomRoYFyfVDvOK3jwssSDuB6ETQsu25dm8u3axCP0_VaP8aSOjhpv2tOWw-R1MqbJ2ZVLQ6IqFE7wycDvvycab3eI1VriE-yhESolbglWPtCd7KOLedUGHwBM0gxTp779HAUWbSRJbkStYL
+
