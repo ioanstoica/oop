@@ -2,8 +2,8 @@
 
 ### Tema 0
 
-- [ ] Nume proiect (îl puteți schimba ulterior)
-- [ ] Scurtă descriere a temei alese, ce v-ați propus să implementați
+- [ ] Analiza evolutie preturi
+- [ ] Algoritmul implementat preia datele istorice ale pretului unor monede cum ar fii Bitcoin si raspunde la comenzi de analiza pe oa numita perioada de timp. 
 
 ## Tema 1
 
