@@ -1,5 +1,5 @@
 ///Tema 2
-
+#pragma warning(disable:4996)
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -95,7 +95,7 @@ private:
     float Open = 0, High = 0,Low = 0, Close = 0, Volume = 0;
 public:
     candela() {}
-    int getOpen()const
+    float getOpen()const
     {
         return Open;
     }
@@ -103,7 +103,7 @@ public:
     {
         return Data;
     }
-    void setOpen(int Open_)
+    void setOpen(float Open_)
     {
         Open = Open_;
     }
@@ -255,7 +255,7 @@ public:
         else
             std::cout << "Pretul a scazut cu " << modificarePret *100 <<"%\n";
 
-        float NrAni = DataFinala.getAn() - DataInitiala.getAn() ;
+        float NrAni = float(DataFinala.getAn() - DataInitiala.getAn()) ;
         if (NrAni > 1 ) /// PretInitial * (1+ModificareaAnuala)^NrAni = PretFinal => (1+ModificareaAnuala)^NrAni = PretFinal/PretInitial => 1+ModificareaAnuala = (PretFinal/PretInitial)^(1/NrAni) => ModificareaAnuala = (PretFinal/PretInitial)^(1/NrAni) -1
         {
             float ModificareaAnuala = pow(PretFinal/PretInitial,1/NrAni) -1 ;
@@ -340,7 +340,7 @@ void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
 
     std::cout<<"Exemple de candele: \n";
     candela c1;
-    candela c2("2022-04-13", 40123.570313,42000,40000,41000,1000000), c3("2015-12-20", 462.234009);
+    candela c2("2022-04-13", 40123.57,42000,40000,41000,1000000), c3("2015-12-20", 462.29);
     std::cout<< c1<< c2<< c3;
     std::cout<<"\n";
 
