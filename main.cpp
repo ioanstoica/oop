@@ -22,7 +22,7 @@ public:
     timp (const char s[])
     {
         char s_aux[11];
-        strcpy(s_aux,s);
+        strcpy_s(s_aux, sizeof s_aux,s);
         s_aux[4]=s_aux[7]=0;
         an = atoi(s_aux);
         luna = atoi(s_aux+5);
@@ -39,9 +39,9 @@ public:
     {
         char aux_luna[2]="",aux_zi[3]="";
         if(t.luna<=9)
-            strcpy(aux_luna,"0");
+            strcpy_s(aux_luna, sizeof aux_luna,"0");
         if(t.zi<=9)
-            strcpy(aux_zi,"0");
+            strcpy_s(aux_zi, sizeof aux_zi,"0");
         os<<t.an<<"-"<<aux_luna<<t.luna<<"-"<<aux_zi<<t.zi;
         return os;
     }
@@ -91,10 +91,10 @@ class candela
 {
 private:
     timp Data{"0000-00-00"}; ///format "yyyy-mm-dd"
-    float Open = 0, High = 0,Low = 0, Close = 0, Volume = 0;
+    double Open = 0, High = 0,Low = 0, Close = 0, Volume = 0;
 public:
     candela() {}
-    float getOpen()const
+    double getOpen()const
     {
         return Open;
     }
@@ -102,7 +102,7 @@ public:
     {
         return Data;
     }
-    void setOpen(float Open_)
+    void setOpen(double Open_)
     {
         Open = Open_;
     }
@@ -111,8 +111,8 @@ public:
         Data = Data_;
     };
     candela(const candela& other) : Data(other.Data), Open(other.Open), High(other.High), Low(other.Low), Volume(other.Volume)  {}
-    candela(timp Data_, float Open_, float High_, float Low_, float Close_, float Volume_) : Data{Data_}, Open{Open_}, High(High_), Low(Low_), Close(Close_), Volume(Volume_) {}
-    candela(timp Data_, float Open_) : Data{Data_}, Open{Open_} {}
+    candela(timp Data_, double Open_, double High_, double Low_, double Close_, double Volume_) : Data{Data_}, Open{Open_}, High(High_), Low(Low_), Close(Close_), Volume(Volume_) {}
+    candela(timp Data_, double Open_) : Data{Data_}, Open{Open_} {}
     candela& operator=(const candela& other)
     {
         Data = other.Data;
@@ -233,7 +233,7 @@ public:
 
 
         candela c;
-        float PretInitial = -1, PretFinal = -1;
+        double PretInitial = -1, PretFinal = -1;
         while(f>>c)
         {
             timp Data = c.getData();
@@ -248,16 +248,16 @@ public:
             return ;
         }
         std::cout<<"Pretul la data de " << DataInitiala << " era " << PretInitial<<"$ iar la data de " <<DataFinala << " era " << PretFinal<< "$."<< std::endl;
-        float modificarePret = (PretFinal - PretInitial) / PretInitial;
+        double modificarePret = (PretFinal - PretInitial) / PretInitial;
         if (modificarePret >= 0)
             std::cout << "Pretul a crescut cu " << modificarePret *100 <<"%\n";
         else
             std::cout << "Pretul a scazut cu " << modificarePret *100 <<"%\n";
 
-        float NrAni = float(DataFinala.getAn() - DataInitiala.getAn()) ;
+        double NrAni = double(DataFinala.getAn() - DataInitiala.getAn()) ;
         if (NrAni > 1 ) /// PretInitial * (1+ModificareaAnuala)^NrAni = PretFinal => (1+ModificareaAnuala)^NrAni = PretFinal/PretInitial => 1+ModificareaAnuala = (PretFinal/PretInitial)^(1/NrAni) => ModificareaAnuala = (PretFinal/PretInitial)^(1/NrAni) -1
         {
-            float ModificareaAnuala = pow(PretFinal/PretInitial,1/NrAni) -1 ;
+            double ModificareaAnuala = pow(PretFinal/PretInitial,1/NrAni) -1 ;
             std::cout<<"In cei " << NrAni <<" ani "<< "modificarea medie anuala a pretului a fost de " << ModificareaAnuala * 100 <<"%\n" ;
         }
 
