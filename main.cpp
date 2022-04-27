@@ -7,7 +7,7 @@
 #include <ctime>
 #include <vector>
 #include <sstream>
-#include <conio.h>
+//#include <conio.h>
 
 class timp
 {
@@ -369,7 +369,8 @@ int main_close()
 {
     std::cout<<"\n";
     std::cout<<"Apasa orice tasta pentru a incheia programul!\n";
-    _getch();
+    //_getch();
+    std::cin.get();
     return 0;
 }
 
