@@ -218,6 +218,8 @@ public:
             std::cout<<"Eroare: DataInitiala > DataFinala "<<std::endl;
             return;
         }
+        std::cout << "Analizam " << (*this).getName() << " de la data " << DataInitiala << " la data " <<DataFinala << ":\n";
+
         ///Partea de convertire fisiere
         std::string fisier_api = (*this).ticker + "-USD.csv";
         std::string fisier_convertit = (*this).ticker + "-USD.txt";
@@ -250,11 +252,13 @@ public:
             if (Data == DataFinala)
                 PretFinal = c.getOpen();
         }
+
         if (PretInitial == -1 || PretFinal == -1)
         {
             std::cout<<"Nu am gasit DataInitiala sau DataFinala"<<std::endl;
             return ;
         }
+
         std::cout<<"Pretul la data de " << DataInitiala << " era " << PretInitial<<"$ iar la data de " <<DataFinala << " era " << PretFinal<< "$."<< std::endl;
         double modificarePret = (PretFinal - PretInitial) / PretInitial;
         if (modificarePret >= 0)
@@ -318,11 +322,15 @@ int main()
     ///2. Rulati programul. Programul va afisa o analiza a pretului monedei in perioada respectiva
     coin btc("Bitcoin","BTC",100);
     std::cout<<"                       == Analiza istoric pret ==\n\n";
-    std::cout << "Analizam " << btc.getName() << " de la data " << DataInitiala << " la data " <<DataFinala << ":\n";
     btc.evolutie ( DataInitiala, DataFinala);
+    std::cout<<"\n";
 
+    coin eth("Etereum","ETH",250);
+    eth.evolutie(timp("2018-01-01"), timp("2022-01-01"));
+    std::cout<<"\n";
 
-
+    coin bnb("Binance Coin","BNB");
+    bnb.evolutie("2018-01-01","2022-01-01");
     ///     == Pentru ca programul sa asptepte apasarea unei taste decomentati urmatoarea linie
     return main_close();
     //return 0;
@@ -380,7 +388,7 @@ void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
 int main_close()
 {
     std::cout<<"\n";
-    std::cout<<"Apasa orice tasta pentru a incheia programul!\n";
+    std::cout<<"Apasa enter pentru a incheia programul!\n";
     //_getch();
     std::cin.get();
     return 0;
