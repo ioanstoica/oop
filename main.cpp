@@ -187,13 +187,13 @@ public:
         return *this;
     }
     ~coin() {} // destructor
-    coin operator + ( coin& x)
+    coin operator + ( const coin& x)
     {
         coin a(*this);
         a.cant += x.cant;
         return a;
     }
-    coin operator - ( coin& x)
+    coin operator - ( const coin& x)
     {
         coin a(*this);
         a.cant -= x.cant;
@@ -205,7 +205,7 @@ public:
         a.cant += x;
         return a;
     }
-    coin operator - (int& x)
+    coin operator - (int x)
     {
         coin a(*this);
         a.cant -= x;
