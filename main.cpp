@@ -70,9 +70,13 @@ public:
             return (*this).luna < t.luna;
         return (*this).zi < t.zi;
     }
-    bool operator > (timp &t)
+    bool operator > (const timp &t)
     {
-        return t < (*this);
+        if((*this).an != t.an)
+            return (*this).an > t.an;
+        if((*this).luna != t.luna)
+            return (*this).luna > t.luna;
+        return (*this).zi > t.zi;
     }
     timp operator = (const timp &t)
     {
@@ -81,15 +85,15 @@ public:
         (*this).zi = t.zi;
         return (*this);
     }
-    bool operator == ( timp &t)
+    bool operator == (const timp &t)
     {
         return !((*this) < t ) && !( (*this) > t );
     }
-    bool operator <= (timp &t)
+    bool operator <= (const timp &t)
     {
         return (*this) < t || (*this) == t ;
     }
-    bool operator >= (timp &t)
+    bool operator >= (const timp &t)
     {
         return (*this) > t || (*this) == t ;
     }
