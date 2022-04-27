@@ -112,7 +112,7 @@ public:
         Data = Data_;
     };
     candela(const candela& other) : Data(other.Data), Open(other.Open), High(other.High), Low(other.Low), Volume(other.Volume)  {}
-    candela(timp Data_, float Open_, float High_, float Low_, float Close_, float Volume_) : Data{Data_}, Open{Open_}, High(High_), Low(Low_), Volume(Volume_) {}
+    candela(timp Data_, float Open_, float High_, float Low_, float Close_, float Volume_) : Data{Data_}, Open{Open_}, High(High_), Low(Low_), Close(Close_), Volume(Volume_) {}
     candela(timp Data_, float Open_) : Data{Data_}, Open{Open_} {}
     candela& operator=(const candela& other)
     {
@@ -132,7 +132,7 @@ public:
     }
     friend std::istream& operator >> ( std::istream& is, candela& x)
     {
-        is >> x.Data >> x.Open >> x.High >> x.Low >>x.Close >> x.Volume;
+        is >> x.Data >> x.Open >> x.High >> x.Low >> x.Close >> x.Volume;
         return is;
     }
 
@@ -285,7 +285,7 @@ public:
     }
     friend std::ostream& operator << (std::ostream& os, const pereche& x)
     {
-        os<<"Perechea: \n"<<x.sell_coin<<x.buy_coin;
+        os<<"Perechea: \n"<<x.sell_coin<<"\n"<<x.buy_coin;
         return os;
     }
 };
