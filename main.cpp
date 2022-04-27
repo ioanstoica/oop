@@ -19,7 +19,7 @@ public:
     timp () {}
     timp (int an_, int luna_, int zi_) :an(an_), luna(luna_), zi(zi_) {}
     timp (const timp &t): an(t.an), luna(t.luna), zi(t.zi) {}
-    timp (const char s[])
+    timp (const char *s)
     {
         char s_aux[11];
         for(int i=0;i<=10;i++)
@@ -62,7 +62,7 @@ public:
         t.zi = 10*(z3-'0')+u3-'0';
         return is;
     }
-    bool operator < (timp &t)
+    bool operator < (const timp &t)
     {
         if((*this).an != t.an)
             return (*this).an < t.an;
@@ -81,7 +81,7 @@ public:
         (*this).zi = t.zi;
         return (*this);
     }
-    bool operator == (timp &t)
+    bool operator == ( timp &t)
     {
         return !((*this) < t ) && !( (*this) > t );
     }
@@ -149,7 +149,7 @@ std::vector<std::vector<std::string> > parseCSV(std::string src);
 class coin
 {
 private:
-    std::string name;
+    std::string name ="";
     std::string ticker;
     int cant = 0;
 public:
@@ -159,11 +159,7 @@ public:
     {
         cant = 0;
     }
-    coin ( const std::string& ticker_):ticker (ticker_)
-    {
-        name = "";
-        cant = 0;
-    }
+    explicit coin ( const std::string& ticker_):ticker (ticker_){}
     coin ( const coin& x):name(x.name), ticker (x.ticker), cant(x.cant) {}
     std::string getName()
     {
@@ -284,7 +280,7 @@ public:
     pereche (coin& sell_coin_, coin& buy_coin_) :sell_coin(sell_coin_), buy_coin(buy_coin_) {}
     pereche ( pereche& x):sell_coin (x.sell_coin),buy_coin (x.buy_coin) {}
     ~pereche() {}
-    pereche operator = (const pereche x)
+    pereche operator = (const pereche &x)
     {
         sell_coin = x.sell_coin;
         buy_coin = x.buy_coin;
@@ -325,7 +321,7 @@ int main()
 
     ///     == Pentru ca programul sa asptepte apasarea unei taste decomentati urmatoarea linie
     return main_close();
-    return 0;
+    //return 0;
 }
 
 
@@ -347,7 +343,11 @@ void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
 
     std::cout<<"Exemple de candele: \n";
     candela c1;
-    candela c2("2022-04-13", 40123.57,42000,40000,41000,1000000), c3("2015-12-20", 462.29);
+    candela c2("2022-04-13", 40123.57,42000,40000,41000,1000000);
+    candela c3("2015-12-20", 462.29);
+    c1.setOpen(234.34);
+    timp t1("2018-02-01");
+    c1.setData(t1);
     std::cout<< c1<< c2<< c3;
     std::cout<<"\n";
 
