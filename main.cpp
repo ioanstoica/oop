@@ -22,7 +22,8 @@ public:
     timp (const char s[])
     {
         char s_aux[11];
-        strcpy_s(s_aux, sizeof s_aux,s);
+        for(int i=0;i<=10;i++)
+            s_aux[i] = s[i];
         s_aux[4]=s_aux[7]=0;
         an = atoi(s_aux);
         luna = atoi(s_aux+5);
@@ -35,13 +36,20 @@ public:
     }
 
 
+
     friend std::ostream& operator << (std::ostream& os, const timp& t)
     {
         char aux_luna[2]="",aux_zi[3]="";
         if(t.luna<=9)
-            strcpy_s(aux_luna, sizeof aux_luna,"0");
+        {
+            aux_luna[0]='0';
+            aux_luna[1]=0;
+        }
         if(t.zi<=9)
-            strcpy_s(aux_zi, sizeof aux_zi,"0");
+        {
+            aux_zi[0]='0';
+            aux_zi[1]=0;
+        }
         os<<t.an<<"-"<<aux_luna<<t.luna<<"-"<<aux_zi<<t.zi;
         return os;
     }
