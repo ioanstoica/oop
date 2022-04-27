@@ -285,10 +285,10 @@ private:
     coin buy_coin = {"","",0};///coin to buy
 public:
     pereche() {}
-    pereche (coin& sell_coin_, coin& buy_coin_) :sell_coin(sell_coin_), buy_coin(buy_coin_) {}
-    pereche ( pereche& x):sell_coin (x.sell_coin),buy_coin (x.buy_coin) {}
+    pereche (const coin& sell_coin_, const coin& buy_coin_) :sell_coin(sell_coin_), buy_coin(buy_coin_) {}
+    pereche (const pereche& x):sell_coin (x.sell_coin),buy_coin (x.buy_coin) {}
     ~pereche() {}
-    pereche operator = (const pereche &x)
+    pereche& operator = (const pereche &x)
     {
         sell_coin = x.sell_coin;
         buy_coin = x.buy_coin;
