@@ -85,7 +85,7 @@ public:
         (*this).zi = t.zi;
         return (*this);
     }
-    const bool operator == (const timp &t)
+    bool operator == (const timp &t)
     {
         return !((*this) < t ) && !( (*this) > t );
     }
