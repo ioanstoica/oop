@@ -7,6 +7,7 @@
 #include <ctime>
 #include <vector>
 #include <sstream>
+#include <list>
 //#include <conio.h>
 
 class timp
@@ -152,7 +153,7 @@ public:
 std::vector<std::vector<std::string> > parseCSV(std::string src);
 class coin
 {
-private:
+protected:
     std::string name ="";
     std::string ticker;
     int cant = 0;
@@ -300,22 +301,60 @@ public:
         return os;
     }
 };
+class grafic:public coin
+{
+    private:
+        std::string culoare;
+        std::list <candela> l;
+    public:
+        void setCuloare(std::string s)
+        {
+            culoare = s;
+        }
+        std::string getCuloare()
+        {
+            return culoare;
+        }
+        grafic (std::string& culoare_ ):culoare (culoare_){}
+        grafic () {}
+};
+
 int main_close();
-
-
 void tema1();
+void analiza();
+
 int main()
 {
     ///     == Functionalitati ==
 
-    ///        == A. Tema 1 ==
-    /// Pentru verificarea/rularea cerintelor de la tema 1 decomentati urmatoarea linie
-    tema1();
-
-
+    ///        == Tema 1 ==
+    /// Verificarea/rularea cerintelor de la tema 1
+    //tema1();
 
     ///     == Functionalitatea principala ==
-    ///
+    //analiza();
+
+    ///        == Tema 2 ==
+    grafic g1;
+    g1.setCuloare ("alb");
+    std::cout<<g1.getCuloare()<<std::endl ;
+
+    std::fstream g;
+    g.open("coins.txt",std::fstream::in);
+    coin x;
+    g>>x;
+    g>>g1;
+    g.close();
+
+    std::cout<<g1;
+
+    ///     == Pentru ca programul sa asptepte apasarea unei taste decomentati urmatoarea linie
+    return main_close();
+    //return 0;
+}
+
+void analiza()///Analiza istorica a unei monede
+{
     ///1. Schimbati DataInitiala si DataFinala cu cate o valoare in intervalul [2014-09-17, 2022-04-25]
     timp DataInitiala( "2015-02-01" );
     timp DataFinala  ( "2019-03-01" );
@@ -331,12 +370,8 @@ int main()
 
     coin bnb("Binance Coin","BNB");
     bnb.evolutie("2018-01-01","2022-01-01");
-    ///     == Pentru ca programul sa asptepte apasarea unei taste decomentati urmatoarea linie
-    return main_close();
-    //return 0;
+
 }
-
-
 
 void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
 {
