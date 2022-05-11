@@ -78,14 +78,14 @@ public:
             return (*this).luna > t.luna;
         return (*this).zi > t.zi;
     }
-    timp operator = (const timp &t)
+    timp &operator = (const timp &t)
     {
         (*this).an = t.an;
         (*this).luna = t.luna;
         (*this).zi = t.zi;
         return (*this);
     }
-    bool operator == (const timp &t)
+    const bool operator == (const timp &t)
     {
         return !((*this) < t ) && !( (*this) > t );
     }
@@ -382,6 +382,10 @@ void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
     pereche p1, p2(x1,x2);
     std::cout<<"Exemple de perechi:\n"<<p1<<p2<<std::endl;
     std::cout<<std::endl;
+
+    /// Clasa timp
+    timp t3("2022-04-13"), t4("2022-04-13");
+    std::cout<< t3 << "==" <<t4<<" : " << (t3 == t4)<< std::endl ;
 
 }
 
