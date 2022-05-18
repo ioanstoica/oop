@@ -10,6 +10,8 @@
 #include <list>
 //#include <conio.h>
 
+using namespace std::literals;
+
 class timp
 {
 private:
@@ -20,7 +22,7 @@ public:
     timp () {}
     timp (int an_, int luna_, int zi_) :an(an_), luna(luna_), zi(zi_) {}
     timp (const timp &t): an(t.an), luna(t.luna), zi(t.zi) {}
-    timp (const char *s)
+    explicit timp (const char *s)
     {
         char s_aux[11];
         for(int i=0;i<=10;i++)
@@ -90,11 +92,11 @@ public:
     {
         return !((*this) < t ) && !( (*this) > t );
     }
-    bool operator <= (const timp &t)
+    bool operator <= (const timp &t)const
     {
         return (*this) < t || (*this) == t ;
     }
-    bool operator >= (const timp &t)
+    bool operator >= (const timp &t)const
     {
         return (*this) > t || (*this) == t ;
     }
@@ -369,7 +371,7 @@ void analiza()///Analiza istorica a unei monede
     std::cout<<"\n";
 
     coin bnb("Binance Coin","BNB");
-    bnb.evolutie("2018-01-01","2022-01-01");
+    bnb.evolutie(timp{"2018-01-01"},timp{"2022-01-01"});
 
 }
 
@@ -390,8 +392,8 @@ void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
 
     std::cout<<"Exemple de candele: \n";
     candela c1;
-    candela c2("2022-04-13", 40123.57,42000,40000,41000,1000000);
-    candela c3("2015-12-20", 462.29);
+    candela c2(timp{"2022-04-13"}, 40123.57,42000,40000,41000,1000000);
+    candela c3(timp{"2015-12-20"}, 462.29);
     c1.setOpen(234.34);
     timp t1("2018-02-01");
     c1.setData(t1);
@@ -419,7 +421,7 @@ void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
     std::cout<<std::endl;
 
     /// Clasa timp
-    timp t3("2022-04-13"), t4("2022-04-13");
+    timp t3{"2022-04-13"}, t4("2022-04-13");
     std::cout<< t3 << "==" <<t4<<" : " << (t3 == t4)<< std::endl ;
 
 }
