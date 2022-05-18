@@ -311,7 +311,7 @@ class grafic:public coin
         {
             culoare = s;
         }
-        std::string getCuloare()
+        const std::string getCuloare()
         {
             return culoare;
         }
@@ -449,4 +449,4 @@ std::vector<std::vector<std::string> > parseCSV(std::string src)
     }
     return parsedCsv;
 
-};
+}
