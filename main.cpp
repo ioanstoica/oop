@@ -63,7 +63,7 @@ public:
         t.zi = 10*(z3-'0')+u3-'0';
         return is;
     }
-    bool operator < (const timp &t)
+    bool operator < (const timp &t)const
     {
         if((*this).an != t.an)
             return (*this).an < t.an;
@@ -71,7 +71,7 @@ public:
             return (*this).luna < t.luna;
         return (*this).zi < t.zi;
     }
-    bool operator > (const timp &t)
+    bool operator > (const timp &t)const
     {
         if((*this).an != t.an)
             return (*this).an > t.an;
@@ -86,7 +86,7 @@ public:
         (*this).zi = t.zi;
         return (*this);
     }
-    bool operator == (const timp &t)
+    bool operator == (const timp &t)const
     {
         return !((*this) < t ) && !( (*this) > t );
     }
