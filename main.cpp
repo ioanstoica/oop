@@ -309,7 +309,7 @@ class grafic:public coin
         std::string culoare;
         std::list <candela> l;
     public:
-        void setCuloare(const std::string s)
+        void setCuloare(const std::string &s)
         {
             culoare = s;
         }
@@ -317,7 +317,7 @@ class grafic:public coin
         {
             return culoare;
         }
-        grafic (std::string& culoare_ ):culoare (culoare_){}
+        explicit grafic (std::string& culoare_ ):culoare (culoare_){}
         grafic () {}
 };
 
