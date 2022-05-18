@@ -331,7 +331,7 @@ int main()
 
     ///        == Tema 1 ==
     /// Verificarea/rularea cerintelor de la tema 1
-    //tema1();
+    tema1();
 
     ///     == Functionalitatea principala ==
     //analiza();
