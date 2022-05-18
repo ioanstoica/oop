@@ -332,21 +332,13 @@ int main()
 
     ///        == Tema 1 ==
     /// Verificarea/rularea cerintelor de la tema 1
-    //tema1();
+    tema1();
 
     ///     == Functionalitatea principala ==
-    //analiza();
+    analiza();
 
     ///        == Tema 2 ==
-    //tema2();
-
-    int x = 1;
-    if ( x == 0)
-    {
-        tema1();
-        analiza();
-        tema2();
-    }
+    tema2();
 
     ///     == Pentru ca programul sa asptepte apasarea unei taste decomentati urmatoarea linie
     return main_close();
