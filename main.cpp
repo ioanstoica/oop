@@ -338,7 +338,7 @@ int main()
     //analiza();
 
     ///        == Tema 2 ==
-    //tema2();
+    tema2();
 
     if ( 1 == 0)
     {
