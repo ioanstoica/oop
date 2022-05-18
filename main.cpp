@@ -309,7 +309,7 @@ class grafic:public coin
         std::string culoare;
         std::list <candela> l;
     public:
-        void setCuloare(std::string s)
+        void setCuloare(const std::string s)
         {
             culoare = s;
         }
@@ -331,10 +331,10 @@ int main()
 
     ///        == Tema 1 ==
     /// Verificarea/rularea cerintelor de la tema 1
-    //tema1();
+    tema1();
 
     ///     == Functionalitatea principala ==
-    //analiza();
+    analiza();
 
     ///        == Tema 2 ==
     grafic g1;
