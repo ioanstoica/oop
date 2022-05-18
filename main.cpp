@@ -323,6 +323,7 @@ class grafic:public coin
 
 int main_close();
 void tema1();
+void tema2();
 void analiza();
 
 int main()
@@ -334,10 +335,26 @@ int main()
     //tema1();
 
     ///     == Functionalitatea principala ==
-    analiza();
+    //analiza();
 
     ///        == Tema 2 ==
-    /*grafic g1;
+    //tema2();
+
+    if ( 1 == 0)
+    {
+        tema1();
+        analiza();
+        tema2();
+    }
+
+    ///     == Pentru ca programul sa asptepte apasarea unei taste decomentati urmatoarea linie
+    return main_close();
+    //return 0;
+}
+
+void tema2()
+{
+    grafic g1;
     g1.setCuloare ("alb");
     std::cout<<g1.getCuloare()<<std::endl ;
 
@@ -348,11 +365,7 @@ int main()
     g>>g1;
     g.close();
 
-    std::cout<<g1;*/
-
-    ///     == Pentru ca programul sa asptepte apasarea unei taste decomentati urmatoarea linie
-    return main_close();
-    //return 0;
+    std::cout<<g1;
 }
 
 void analiza()///Analiza istorica a unei monede
