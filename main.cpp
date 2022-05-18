@@ -331,13 +331,13 @@ int main()
 
     ///        == Tema 1 ==
     /// Verificarea/rularea cerintelor de la tema 1
-    tema1();
+    //tema1();
 
     ///     == Functionalitatea principala ==
-    analiza();
+    //analiza();
 
     ///        == Tema 2 ==
-    grafic g1;
+    /*grafic g1;
     g1.setCuloare ("alb");
     std::cout<<g1.getCuloare()<<std::endl ;
 
@@ -348,7 +348,7 @@ int main()
     g>>g1;
     g.close();
 
-    std::cout<<g1;
+    std::cout<<g1;*/
 
     ///     == Pentru ca programul sa asptepte apasarea unei taste decomentati urmatoarea linie
     return main_close();
