@@ -5,9 +5,9 @@
 #include <string.h>
 #include <ctime>
 #include <list>
-#include "timp.h"
-#include "candela.h"
-#include "coin.h"
+#include "include/timp.h"
+#include "include/candela.h"
+#include "include/coin.h"
 //#include <conio.h>
 
 using namespace std::literals;

@@ -4,9 +4,9 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <math.h>
 #include "timp.h"
 #include "candela.h"
-#include <math.h>
 
 std::vector<std::vector<std::string> > parseCSV(std::string src);
 
