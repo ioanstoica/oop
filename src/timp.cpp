@@ -1,4 +1,4 @@
-#include "timp.h"
+#include "include/timp.h"
 
 timp::timp()
 {
