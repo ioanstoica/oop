@@ -7,6 +7,7 @@
 #include <math.h>
 #include "timp.h"
 #include "candela.h"
+//#include "../src/coin.cpp"
 
 std::vector<std::vector<std::string> > parseCSV(std::string src);
 
