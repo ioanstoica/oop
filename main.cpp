@@ -102,7 +102,8 @@ void analiza()///Analiza istorica a unei monede
 
 void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
 {
-    //std::cout << "                           == Tema 1 == \n \n " ;
+    std::cout << "                           == Tema 1 ==  " ;
+    std::cout << std::endl << std::endl;
 
     /// Clasa candela
 
