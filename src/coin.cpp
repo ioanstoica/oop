@@ -1,5 +1,6 @@
-#include "include/coin.h"
+#include "coin.h"
 
+/*
 coin::coin()
 {
     //ctor
@@ -9,3 +10,4 @@ coin::~coin()
 {
     //dtor
 }
+*/

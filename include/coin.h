@@ -17,8 +17,8 @@ protected:
     std::string ticker;
     int cant = 0;
 public:
-    coin();
-    virtual ~coin();
+    coin(){};
+    virtual ~coin(){};
     coin ( const std::string& name_, const std::string& ticker_, int cant_ ):name (name_), ticker (ticker_), cant(cant_) {}
     coin ( const std::string& name_, const std::string& ticker_) :name (name_), ticker (ticker_)
     {
