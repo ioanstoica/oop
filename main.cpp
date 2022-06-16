@@ -151,13 +151,13 @@ void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
 
 }
 
-int main_close()
+/*int main_close()
 {
     std::cout<<"\n";
     std::cout<<"Apasa enter pentru a incheia programul!\n";
     //_getch();
     std::cin.get();
     return 0;
-}
+}*/
 
 
