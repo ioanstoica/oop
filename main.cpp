@@ -37,23 +37,6 @@ public:
         return os;
     }
 };
-class grafic:public coin
-{
-    private:
-        std::string culoare;
-        std::list <candela> l;
-    public:
-        void setCuloare(const std::string &s)
-        {
-            culoare = s;
-        }
-        const std::string getCuloare()
-        {
-            return culoare;
-        }
-        explicit grafic (std::string& culoare_ ):culoare (culoare_){}
-        grafic () {}
-};
 
 class cryptocoin:public coin
 {
@@ -83,24 +66,18 @@ int main()
     tema2();
 
     ///     == Pentru ca programul sa asptepte apasarea unei taste decomentati urmatoarea linie
-    return main_close();
-    //return 0;
+    //return main_close();
+    return 0;
 }
 
 void tema2()
 {
-    grafic g1;
-    g1.setCuloare ("alb");
-    std::cout<<g1.getCuloare()<<std::endl ;
-
     std::fstream g;
     g.open("coins.txt",std::fstream::in);
     coin x;
     g>>x;
-    g>>g1;
+    std::cout<<x;
     g.close();
-
-    std::cout<<g1;
 }
 
 void analiza()///Analiza istorica a unei monede
@@ -125,7 +102,7 @@ void analiza()///Analiza istorica a unei monede
 
 void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
 {
-    std::cout<< "                           == Tema 1 ==\n\n";
+    std::cout<< "                           == Tema 1 == \n \n ";
 
     /// Clasa candela
 
