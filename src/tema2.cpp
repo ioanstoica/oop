@@ -9,7 +9,7 @@
 void tema2()
 {
     std::fstream g;
-    g.open("\date/coins.txt",std::fstream::in);
+    g.open("../date/coins.txt",std::fstream::in);
     coin x;
     g>>x;
     std::cout<<x;
