@@ -1,4 +1,4 @@
-#include "pereche.h"
+#include "../include/pereche.h"
 
 pereche::pereche()
 {
