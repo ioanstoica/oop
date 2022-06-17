@@ -9,19 +9,13 @@ private:
     timp Data{"0000-00-00"}; ///format "yyyy-mm-dd"
     double Open = 0, High = 0,Low = 0, Close = 0, Volume = 0;
 public:
-    candela() {}
+    candela();
     double getOpen()const
     {
         return Open;
     }
-    timp getData()
-    {
-        return Data;
-    }
-    void setOpen(double Open_)
-    {
-        Open = Open_;
-    }
+    timp getData();
+    void setOpen(double Open_);
     void setData(timp Data_)
     {
         Data = Data_;
