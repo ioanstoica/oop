@@ -73,8 +73,8 @@ void coin::print()
         std::cout << "Analizam " << (*this).getName() << " de la data " << DataInitiala << " la data " <<DataFinala << ":\n";
 
         ///Partea de convertire fisiere
-        std::string fisier_api = "date/" + (*this).ticker + "-USD.csv";
-        std::string fisier_convertit = "date/" + (*this).ticker + "-USD.txt";
+        std::string fisier_api = "/date/" + (*this).ticker + "-USD.csv";
+        std::string fisier_convertit = "/date/" + (*this).ticker + "-USD.txt";
         std::ofstream g(fisier_convertit);
         std::vector<std::vector<std::string> > parsedCSV;
         parsedCSV = parseCSV(fisier_api); /// (dest, src)
