@@ -8,6 +8,7 @@
 #include "include/timp.h"
 #include "include/candela.h"
 #include "include/coin.h"
+#include "include/pereche.h"
 
 //#include <conio.h>
 
@@ -15,28 +16,6 @@ using namespace std::literals;
 
 
 
-class pereche
-{
-private:
-    coin sell_coin = {"","",0};///coin to sell
-    coin buy_coin = {"","",0};///coin to buy
-public:
-    pereche() {}
-    pereche (const coin& sell_coin_, const coin& buy_coin_) :sell_coin(sell_coin_), buy_coin(buy_coin_) {}
-    pereche (const pereche& x):sell_coin (x.sell_coin),buy_coin (x.buy_coin) {}
-    ~pereche() {}
-    pereche& operator = (const pereche &x)
-    {
-        sell_coin = x.sell_coin;
-        buy_coin = x.buy_coin;
-        return *this;
-    }
-    friend std::ostream& operator << (std::ostream& os, const pereche& x)
-    {
-        os<<"Perechea: \n"<<x.sell_coin<<"\n"<<x.buy_coin;
-        return os;
-    }
-};
 
 class cryptocoin:public coin
 {
