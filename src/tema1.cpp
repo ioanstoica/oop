@@ -15,7 +15,7 @@ void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
     /// Clasa candela
 
     std::fstream f;
-    f.open("date/date.txt",std::fstream::in);
+    f.open("/date/date.txt",std::fstream::in);
     candela c;
     std::cout<<"Fisierul cu candele:\n";
     while(f>>c)
