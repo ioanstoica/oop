@@ -15,7 +15,7 @@ void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
     /// Clasa candela
 
     std::fstream f;
-    f.open("date.txt",std::fstream::in);
+    f.open("date/date.txt",std::fstream::in);
     candela c;
     std::cout<<"Fisierul cu candele:\n";
     while(f>>c)
@@ -35,7 +35,7 @@ void tema1() /// testarea claselor/ metodelor/ operatorilor din tema 1
 
     /// Clasa coin
     std::fstream g;
-    g.open("coins.txt",std::fstream::in);
+    g.open("date/coins.txt",std::fstream::in);
     coin x;
     std::cout<<"Exemple de monede:\n";
     while(g>>x)

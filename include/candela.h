@@ -10,10 +10,7 @@ private:
     double Open = 0, High = 0,Low = 0, Close = 0, Volume = 0;
 public:
     candela();
-    double getOpen()const
-    {
-        return Open;
-    }
+    double getOpen()const;
     timp getData();
     void setOpen(double Open_);
     void setData(timp Data_);

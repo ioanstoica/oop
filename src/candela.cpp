@@ -42,3 +42,8 @@ std::istream& operator >> ( std::istream& is, candela& x)
         is >> x.Data >> x.Open >> x.High >> x.Low >> x.Close >> x.Volume;
         return is;
     }
+
+double candela::getOpen()const
+    {
+        return Open;
+    }
