@@ -240,7 +240,7 @@ jobs:
         if: runner.os == 'Linux' && matrix.cxx == 'clang++-11' && steps.cache-tools.outputs.cache-hit != 'true'
         run: |
           cd tools
-          git clone --depth=1 https://github.com/llvm/llvm-project
+          git clone --depth=1 --branch=llvmorg-11.1.0 https://github.com/llvm/llvm-project
           cd llvm-project
           mkdir build; cd build
           sudo ln -s -f /usr/bin/clang-11 /usr/bin/clang
