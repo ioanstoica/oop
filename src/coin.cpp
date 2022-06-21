@@ -1,5 +1,5 @@
 #include "../include/coin.h"
-
+#include <vector>
 coin::coin()
 {
     //ctor
@@ -137,8 +137,47 @@ void coin::evolutie ( timp DataInitiala, timp DataFinala)
     return;
 }
 
-int coin::MA(int d)
+float coin::MA(int d)
 {
+    if( d<=0 )
+        throw "Numar de zile <=0";
+    (*this).FileConvert();
+    std::string fisier_convertit = "date/" + (*this).ticker + "-USD.txt";
+    std::fstream f;
+    f.open(fisier_convertit,std::fstream::in);
+    std::vector <float> v;
+    candela c;
+    while(f>>c)
+        v.push_back(c.getOpen());
+    if(unsigned(d) >= v.size())
+        throw "Nu avem date suficiente";
+    float sum = 0;
+    for(int i=1;i<=d;i++)
+        sum +=v[v.size() - i];
 
-    return 0;
+    return sum / d;
+}
+
+float coin::dev(int d)
+{
+    if(d<=0 )
+        throw "Numar de zile <=0";
+    (*this).FileConvert();
+    std::string fisier_convertit = "date/" + (*this).ticker + "-USD.txt";
+    std::fstream f;
+    f.open(fisier_convertit,std::fstream::in);
+    std::vector <float> v;
+    candela c;
+    while(f>>c)
+        v.push_back(c.getOpen());
+    if(unsigned(d) >= v.size())
+        throw "Nu avem date suficiente";
+    float sum = 0;
+    for(int i=1;i<=d;i++)
+        sum +=v[v.size() - i];
+    float med = sum/d;
+    float dv = 0;
+    for(int i=1;i<=d;i++)
+        dv += abs( v[v.size() - i] - med );
+    return dv / d;
 }

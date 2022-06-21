@@ -63,12 +63,27 @@ void tema2()
         std::cout<<"Eroare: "<<msg<<"\n";
     }
 
-    ///Functionalitati:
+    ///Testare Functionalitati:
     coin btc("Bitcoin","BTC",100);
-    btc.MA(30);
+    try
+    {
+        float x = btc.MA(100);
+        std::cout<<"Media ultimelor zile este: "<< x<<std::endl;
+    }
+    catch (const char *msg )
+    {
+        std::cout<<"Eroare: "<<msg<<"\n";
+    }
 
-
-
+    try
+    {
+        float x = btc.dev(100);
+        std::cout<<"Deviatia medie este: "<< x<<std::endl;
+    }
+    catch (const char *msg )
+    {
+        std::cout<<"Eroare: "<<msg<<"\n";
+    }
 
     g.close();
 
