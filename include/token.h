@@ -1,6 +1,6 @@
 #ifndef TOKEN_H
 #define TOKEN_H
-#include <coin.h>
+#include "coin.h"
 
 class token
 {

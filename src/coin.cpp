@@ -11,7 +11,6 @@ coin::~coin()
     //dtor
 }
 
-
 void coin::print()
 {
     std::cout<< "Moneda selectata: "<<name<<" are ticker-ul "<<ticker<<" si este detinuta in cantitatea: " <<cant ;
