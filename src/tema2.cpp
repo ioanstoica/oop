@@ -12,6 +12,8 @@ void tema2()
     g.open("date/coins.txt",std::fstream::in);
     coin x;
     g>>x;
+    x.print();
+    std::cout<<"\n";
     std::cout<<x;
     g.close();
 }
