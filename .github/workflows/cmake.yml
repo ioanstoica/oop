@@ -31,7 +31,7 @@ jobs:
           - os: ubuntu-20.04
             c: clang-11
             cxx: clang++-11
-            name: Ubuntu 20.04 Clang 11 Test 0.1
+            name: Ubuntu 20.04 Clang 11
             # The flag CMAKE_EXPORT_COMPILE_COMMANDS generates compile_commands.json
             # which is used by cppcheck and clang-tidy
             cmake_flags: -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
@@ -79,7 +79,7 @@ jobs:
             # other generator: "\"MinGW Makefiles\""
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkoutttt@v2
 
       - name: Prepare env
         run: |
