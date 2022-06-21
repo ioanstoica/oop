@@ -14,7 +14,7 @@ class utility_token : public coin
         void print() override;
         void setRol(const std::string &rol_);
         utility_token ( const std::string& name_, const std::string& ticker_, int cant_, const std::string& rol_ ): rol(rol_){name = name_, ticker  = ticker_, cant= cant_;}
-        utility_token (  const std::string& rol_ ):rol(rol_) {}
+        explicit utility_token (  const std::string& rol_ ):rol(rol_) {}
 };
 
 #endif // UTILITY_TOKEN_H
