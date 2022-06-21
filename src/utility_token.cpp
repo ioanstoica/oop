@@ -17,16 +17,7 @@ void utility_token::print()
     std::cout<< "Utility token: "<<name<<" are ticker-ul "<<ticker<<", cantitate: " <<cant << " folosit ca si: "<<rol<<"\n";
 }
 
-/*utility_token utility_token::operator = ( const utility_token& x)
-{
-    name = x.name;
-    rol = x.rol;
-    ticker = x.ticker;
-    cant = x.cant;
-    return *this;
-}*/
-
-void utility_token::setRol(const std::string rol_)
+void utility_token::setRol(const std::string &rol_)
 {
     rol = rol_;
 }
