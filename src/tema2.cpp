@@ -29,6 +29,7 @@ void tema2()
     token t2;
     coin *p = new coin;
     p->print();
+    delete p;
 
     ///smart pointers
     std::unique_ptr<coin> p1(new coin("Polkadot","DOT",23200));
@@ -36,6 +37,7 @@ void tema2()
     p1->print();
     p2 = move(p1);
     p2->print();
+
 
     ///dynamic_cast
     utility_token D ;//("Tether","USDT",122);
