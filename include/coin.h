@@ -14,6 +14,7 @@ std::vector<std::vector<std::string> > parseCSV(std::string src);
 class coin
 {
 protected:
+
     std::string name ="";
     std::string ticker;
     int cant = 0;
@@ -22,7 +23,11 @@ public:
     virtual ~coin();
     coin ( const std::string& name_, const std::string& ticker_, int cant_ ):name (name_), ticker (ticker_), cant(cant_) {}
     coin ( const std::string& name_, const std::string& ticker_) :name (name_), ticker (ticker_){cant = 0; }
-    explicit coin ( const std::string& ticker_):ticker (ticker_){}
+    explicit coin ( const std::string& ticker_):ticker (ticker_)
+    {
+        if (ticker_ == "")
+            throw "SIR_VID";
+    }
     coin ( const coin& x):name(x.name), ticker (x.ticker), cant(x.cant) {}
     virtual void print();
     std::string getName();
@@ -34,7 +39,6 @@ public:
     coin operator + (int x);
     coin operator - (int x);
     void evolutie ( timp DataInitiala, timp DataFinala);
-    //friend utility_token utility_token::operator = ( const coin& x);
 };
 
 #endif // COIN_H

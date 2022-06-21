@@ -54,7 +54,14 @@ void tema2()
     D2.print();
 
     ///exceptii
-    ///ierarhie proprie (cu baza std::exception sau derivata din std::exception)
+    try
+    {
+        coin y(""); ///Numele nu trebuie sa fie vid
+    }
+    catch (const char *msg )
+    {
+        std::cout<<"Eroare: "<<msg<<"\n";
+    }
 
 
 

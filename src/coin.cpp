@@ -130,3 +130,4 @@ void coin::evolutie ( timp DataInitiala, timp DataFinala)
     f.close();
     return;
 }
+

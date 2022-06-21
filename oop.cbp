@@ -38,6 +38,8 @@
 		<Unit filename="include/coin.h" />
 		<Unit filename="include/pereche.h" />
 		<Unit filename="include/timp.h" />
+		<Unit filename="include/token.h" />
+		<Unit filename="include/utility_token.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/candela.cpp" />
 		<Unit filename="src/coin.cpp" />
@@ -46,6 +48,8 @@
 		<Unit filename="src/tema1.cpp" />
 		<Unit filename="src/tema2.cpp" />
 		<Unit filename="src/timp.cpp" />
+		<Unit filename="src/token.cpp" />
+		<Unit filename="src/utility_token.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
