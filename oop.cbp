@@ -35,9 +35,16 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/candela.h" />
+		<Unit filename="include/coin.h" />
+		<Unit filename="include/pereche.h" />
 		<Unit filename="include/timp.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/candela.cpp" />
+		<Unit filename="src/coin.cpp" />
+		<Unit filename="src/parseCSV.cpp" />
+		<Unit filename="src/pereche.cpp" />
+		<Unit filename="src/tema1.cpp" />
+		<Unit filename="src/tema2.cpp" />
 		<Unit filename="src/timp.cpp" />
 		<Extensions />
 	</Project>
