@@ -77,5 +77,5 @@ void analiza()///Analiza istorica a unei monede
 
     coin bnb("Binance Coin","BNB");
     bnb.evolutie(timp{"2018-01-01"},timp{"2022-01-01"});
-
+    std::cout<<"\n";
 }

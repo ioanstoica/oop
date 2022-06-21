@@ -5,10 +5,13 @@
 #include "../include/coin.h"
 #include "../include/utility_token.h"
 #include "../include/token.h"
+#include <memory>
 
 
 void tema2()
 {
+    std::cout << "                           == Tema 2 ==  \n\n" ;
+
     /// mosteniri
     std::fstream g;
     g.open("date/coins.txt",std::fstream::in);
@@ -20,12 +23,26 @@ void tema2()
     g>>x;
     t.setP(&x);
     t.print();
-    std::cout<<"\n";
-
-    ///
 
 
+    /*///apelarea constructorului din clasa de baza
+    token t2;
+    coin *p = new coin;
+    p->print();
 
+    ///smart pointers
+    std::unique_ptr<coin> p1(new coin("Polkadot","DOT",23200));
+    std::unique_ptr<coin> p2;
+    p1->print();
+    p2 = move(p1);
+    p2->print();
+
+    ///dynamic_cast
+    utility_token D("Tether","USDT",122);
+    coin& a = D;
+    utility_token& new_d = dynamic_cast<utility_token&>(a);
+
+    */
     g.close();
 
 

@@ -1,9 +1,9 @@
 #include "../include/coin.h"
 
-
 coin::coin()
 {
     //ctor
+    (*this).name = "CoinNesetat";
 }
 
 coin::~coin()
@@ -13,7 +13,7 @@ coin::~coin()
 
 void coin::print()
 {
-    std::cout<< "Moneda selectata: "<<name<<" are ticker-ul "<<ticker<<" si este detinuta in cantitatea: " <<cant ;
+    std::cout<< "Moneda selectata: "<<name<<" are ticker-ul "<<ticker<<" si este detinuta in cantitatea: " <<cant <<"\n";
 }
 
 std::string coin::getName()

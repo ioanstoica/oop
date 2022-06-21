@@ -4,6 +4,7 @@
 utility_token::utility_token()
 {
     //ctor
+    (*this).name = "TokenNesetat";
 }
 
 utility_token::~utility_token()
@@ -13,5 +14,5 @@ utility_token::~utility_token()
 
 void utility_token::print()
 {
-    std::cout<< "Utility token: "<<name<<" are ticker-ul "<<ticker<<" si este detinuta in cantitatea: " <<cant ;
+    std::cout<< "Utility token: "<<name<<" are ticker-ul "<<ticker<<" si este detinuta in cantitatea: " <<cant <<"\n";
 }
