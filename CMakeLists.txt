@@ -24,7 +24,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml when changing name here
-add_executable(${PROJECT_NAME} main.cpp src/coin.cpp src/timp.cpp src/candela.cpp src/parseCSV.cpp src/tema1.cpp src/tema2.cpp src/pereche.cpp)
+add_executable(${PROJECT_NAME} main.cpp src/coin.cpp src/timp.cpp src/candela.cpp src/parseCSV.cpp src/tema1.cpp src/tema2.cpp src/pereche.cpp src/utility_token.cpp src/token.cpp)
 
 
 ###############################################################################
