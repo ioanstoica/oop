@@ -3,6 +3,7 @@
 token::token()
 {
     //ctor
+    p = NULL;
 }
 
 token::~token()

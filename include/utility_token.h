@@ -9,7 +9,7 @@ class utility_token : public coin
     public:
         utility_token();
         virtual ~utility_token();
-        void print();
+        void print() override;
 
 
 
