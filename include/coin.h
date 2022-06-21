@@ -24,7 +24,7 @@ public:
     coin ( const std::string& name_, const std::string& ticker_) :name (name_), ticker (ticker_){cant = 0; }
     explicit coin ( const std::string& ticker_):ticker (ticker_){}
     coin ( const coin& x):name(x.name), ticker (x.ticker), cant(x.cant) {}
-    void print();
+    virtual void print();
     std::string getName();
     friend std::ostream& operator << (std::ostream& os, const coin& x);
     friend std::istream& operator >> ( std::istream& is, coin& x);
