@@ -39,6 +39,8 @@ public:
     coin operator + (int x);
     coin operator - (int x);
     void evolutie ( timp DataInitiala, timp DataFinala);
+    void FileConvert();
+    int MA(int d);
 };
 
 #endif // COIN_H

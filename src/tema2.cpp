@@ -63,7 +63,9 @@ void tema2()
         std::cout<<"Eroare: "<<msg<<"\n";
     }
 
-
+    ///Functionalitati:
+    coin btc("Bitcoin","BTC",100);
+    btc.MA(30);
 
 
 

@@ -62,6 +62,29 @@ coin coin::operator - (int x)
     a.cant -= x;
     return a;
 }
+
+void coin::FileConvert()
+{
+    ///Partea de convertire fisiere
+    std::string fisier_api = "date/" + (*this).ticker + "-USD.csv";
+    std::string fisier_convertit = "date/" + (*this).ticker + "-USD.txt";
+    std::ofstream g(fisier_convertit);
+    std::vector<std::vector<std::string> > parsedCSV;
+    parsedCSV = parseCSV(fisier_api); /// (dest, src)
+    auto i = parsedCSV.begin() ;
+    ++i;
+    for( ; i != parsedCSV.end(); ++i)
+    {
+        int k = 0;
+        for (auto j = (*i).begin(); j!= (*i).end(); ++k,++j)
+            if ( k!=5 )
+                g << (*j) << " " ;
+        g<<std::endl;
+    }
+    g.close();
+
+}
+
 void coin::evolutie ( timp DataInitiala, timp DataFinala)
 {
     if ( DataFinala < DataInitiala)
@@ -71,26 +94,9 @@ void coin::evolutie ( timp DataInitiala, timp DataFinala)
     }
     std::cout << "Analizam " << (*this).getName() << " de la data " << DataInitiala << " la data " <<DataFinala << ":\n";
 
-    ///Partea de convertire fisiere
-    std::string fisier_api = "date/" + (*this).ticker + "-USD.csv";
+    (*this).FileConvert();
+
     std::string fisier_convertit = "date/" + (*this).ticker + "-USD.txt";
-    std::ofstream g(fisier_convertit);
-    std::vector<std::vector<std::string> > parsedCSV;
-    parsedCSV = parseCSV(fisier_api); /// (dest, src)
-    auto i = parsedCSV.begin() ;
-    ++i;
-
-    for( ; i != parsedCSV.end(); ++i)
-    {
-        int k = 0;
-        for (auto j = (*i).begin(); j!= (*i).end(); ++k,++j)
-            if ( k!=5 )
-                g << (*j) << " " ;
-        g<<std::endl;
-    }
-
-    g.close();
-
     std::fstream f;
     f.open(fisier_convertit,std::fstream::in);
 
@@ -131,3 +137,8 @@ void coin::evolutie ( timp DataInitiala, timp DataFinala)
     return;
 }
 
+int coin::MA(int d)
+{
+
+    return 0;
+}
