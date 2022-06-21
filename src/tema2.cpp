@@ -25,7 +25,7 @@ void tema2()
     t.print();
 
 
-    /*///apelarea constructorului din clasa de baza
+    ///apelarea constructorului din clasa de baza
     token t2;
     coin *p = new coin;
     p->print();
@@ -38,11 +38,14 @@ void tema2()
     p2->print();
 
     ///dynamic_cast
-    utility_token D("Tether","USDT",122);
+    utility_token D ;//("Tether","USDT",122);
     coin& a = D;
     utility_token& new_d = dynamic_cast<utility_token&>(a);
+    new_d.print();
 
-    */
+
+
+
     g.close();
 
 
