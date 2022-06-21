@@ -81,7 +81,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Prepare env_abc
+      - name: Prepare env
         run: |
           echo $GITHUB_WORKSPACE
           mkdir $GITHUB_WORKSPACE/artifacts

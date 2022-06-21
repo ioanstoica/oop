@@ -20,11 +20,7 @@ public:
     candela& operator=(const candela& other);
     ~candela() {/*std::cout << "Destr candela\n";*/}// destructor
     friend std::ostream& operator<<(std::ostream& os, const candela& st);
-
     friend std::istream& operator >> ( std::istream& is, candela& x);
-
-
-
 };
 
 #endif // CANDELA_H

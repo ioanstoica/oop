@@ -12,17 +12,8 @@ public:
     virtual ~pereche();
     pereche (const coin& sell_coin_, const coin& buy_coin_) :sell_coin(sell_coin_), buy_coin(buy_coin_) {}
     pereche (const pereche& x):sell_coin (x.sell_coin),buy_coin (x.buy_coin) {}
-    pereche& operator = (const pereche &x)
-    {
-        sell_coin = x.sell_coin;
-        buy_coin = x.buy_coin;
-        return *this;
-    }
-    friend std::ostream& operator << (std::ostream& os, const pereche& x)
-    {
-        os<<"Perechea: \n"<<x.sell_coin<<"\n"<<x.buy_coin;
-        return os;
-    }
+    pereche& operator = (const pereche &x);
+    friend std::ostream& operator << (std::ostream& os, const pereche& x);
 };
 
 #endif // PERECHE_H
