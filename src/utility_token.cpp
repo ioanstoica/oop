@@ -30,10 +30,3 @@ void utility_token::setRol(const std::string rol_)
 {
     rol = rol_;
 }
-
-void swap(utility_token &a, utility_token &b)
-{
-    utility_token aux = a;
-    a = b;
-    b =aux;
-}
