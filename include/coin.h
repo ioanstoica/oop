@@ -34,6 +34,7 @@ public:
     coin operator + (int x);
     coin operator - (int x);
     void evolutie ( timp DataInitiala, timp DataFinala);
+    //friend utility_token utility_token::operator = ( const coin& x);
 };
 
 #endif // COIN_H

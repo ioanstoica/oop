@@ -40,10 +40,23 @@ void tema2()
 
 
     ///dynamic_cast
-    utility_token D ;//("Tether","USDT",122);
+    utility_token D("GameStop","GMT",1400,"Context Token") ;//("Tether","USDT",122);
     coin& a = D;
     utility_token& new_d = dynamic_cast<utility_token&>(a);
     new_d.print();
+
+
+    ///suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
+    D.setRol("Exchange Token");
+    utility_token D2 = D ;
+    D.setRol("Game Token");
+    D.print();
+    D2.print();
+
+    ///exceptii
+    ///ierarhie proprie (cu baza std::exception sau derivata din std::exception)
+
+
 
 
 
