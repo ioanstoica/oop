@@ -67,8 +67,8 @@ void tema2()
     coin btc("Bitcoin","BTC",100);
     try
     {
-        float x = btc.MA(100);
-        std::cout<<"Media ultimelor zile este: "<< x<<std::endl;
+        float x1 = btc.MA(100);
+        std::cout<<"Media ultimelor zile este: "<< x1<<std::endl;
     }
     catch (const char *msg )
     {
@@ -77,8 +77,8 @@ void tema2()
 
     try
     {
-        float x = btc.dev(100);
-        std::cout<<"Deviatia medie este: "<< x<<std::endl;
+        float x2 = btc.dev(100);
+        std::cout<<"Deviatia medie este: "<< x2<<std::endl;
     }
     catch (const char *msg )
     {
